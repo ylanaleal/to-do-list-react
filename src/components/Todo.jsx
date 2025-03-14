@@ -26,6 +26,12 @@ const Todo = () => {
     setListInputs({ ...listInputs, [index]: value });
   };
 
+  const handleDeleteTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
   return (
     <>
       <div className="todo-container">
@@ -34,7 +40,7 @@ const Todo = () => {
           <input
             type="text"
             className="heading-input"
-            placeholder="Enter your task"
+            placeholder="Enter your list name"
             value={headingInput}
             onChange={(e) => {
               setHeadingInput(e.target.value); //setando os dados do titulo da lista no state
@@ -49,11 +55,23 @@ const Todo = () => {
             <div key={index} className="todo-card">
               <div className="heading_todo">
                 <h3>{todo.heading}</h3>
-                <button className="delete-button-heading">
+                <button
+                  className="delete-button-heading"
+                  onClick={() => handleDeleteTodo(index)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <i className="fa-solid fa-circle-xmark"></i>
                   Delete
                 </button>
               </div>
+
+              <ul>
+                {todo.listInputs.map((item, itemIndex) => (
+                  <li key={itemIndex} className="todo_inside_list">
+                    <p>{item}</p>
+                  </li>
+                ))}
+              </ul>
 
               <div className="add_list">
                 <input
