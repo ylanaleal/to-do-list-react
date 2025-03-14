@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Todo from './components/Todo';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
